@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff0f5">
+<title>Happy Birthday, Urielа 💗</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; overflow-x: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+    color: #54283b;
+    background: radial-gradient(circle at top, #fff 0, #fff0f5 45%, #f9dce8 100%);
+    display: grid; place-items: center; padding: 24px 14px;
+  }
+  .card {
+    width: min(100%, 480px); min-height: 620px; position: relative;
+    text-align: center; padding: 34px 22px 30px;
+    border: 1px solid #f4c6d7; border-radius: 28px;
+    background: rgba(255,255,255,.88);
+    box-shadow: 0 18px 55px rgba(139,55,91,.16);
+    overflow: hidden;
+  }
+  .eyebrow { letter-spacing: 3px; text-transform: uppercase; font: 11px Arial,sans-serif; color:#b65e83; }
+  h1 { font-size: clamp(34px, 9vw, 48px); line-height: 1.05; margin: 14px 0 8px; color:#a83d69; }
+  .subtitle { font: 14px Arial,sans-serif; color:#9c6b7e; }
+  .cake { font-size: 104px; margin: 22px 0 4px; filter: drop-shadow(0 8px 8px #e8b5c8); animation: bob 2.4s ease-in-out infinite; }
+  @keyframes bob { 50% { transform: translateY(-8px) rotate(1deg); } }
+  button {
+    border: 0; border-radius: 999px; padding: 15px 25px; margin-top: 20px;
+    background: linear-gradient(135deg,#c34f7d,#ed8cad); color:white;
+    font: bold 15px Arial,sans-serif; cursor:pointer;
+    box-shadow: 0 8px 20px rgba(195,79,125,.25);
+  }
+  button:active { transform: scale(.97); }
+  .hidden { display:none !important; }
+  .question { margin: 25px 0 5px; font-size: 25px; color:#a83d69; }
+  .letter {
+    margin: 24px auto 0; max-width: 390px; padding: 25px 21px;
+    text-align: left; background: #fffaf5; border: 1px solid #f0d8c8;
+    border-radius: 5px; box-shadow: 0 7px 18px rgba(99,60,48,.08);
+    font-size: 17px; line-height: 1.65; transform: rotate(-.4deg);
+  }
+  .letter .sign { text-align:right; color:#a83d69; font-weight:bold; margin-top:20px; }
+  .ending { margin-top: 20px; color:#a83d69; font-size: 23px; font-weight:bold; }
+  .small { font: 12px Arial,sans-serif; color:#a77c8e; margin-top:14px; }
+  .flower {
+    position: fixed; top:-45px; z-index:5; pointer-events:none;
+    font-size: 25px; animation: fall linear forwards;
+  }
+  @keyframes fall { to { transform: translateY(110vh) rotate(700deg); opacity:.15; } }
+  .trumpet { font-size: 35px; margin-top: 8px; }
+  .sparkle { color:#d98aa9; }
+</style>
+</head>
+<body>
+<main class="card">
+  <section id="welcome">
+    <div class="eyebrow">A little surprise made with love</div>
+    <div class="trumpet">🎺 ✨ 🎺</div>
+    <h1>Happy Birthday,<br>Uriela!</h1>
+    <p class="subtitle">Today is all about you, beautiful 💗</p>
+    <div class="cake">🎂</div>
+    <p class="subtitle">Make a wish… your surprise is waiting.</p>
+    <button id="openBtn">Open your surprise 💐</button>
+    <p class="small">Turn your sound on for the birthday fanfare</p>
+  </section>
+
+  <section id="question" class="hidden">
+    <div class="eyebrow">One little question…</div>
+    <div class="cake">💐</div>
+    <div class="question">Are you ready, Uriela?</div>
+    <p class="subtitle">I made something special just for you.</p>
+    <button id="yesBtn">YES! 💗</button>
+  </section>
+
+  <section id="message" class="hidden">
+    <div class="eyebrow">A letter from my heart</div>
+    <h1>For you, Uriela</h1>
+    <article class="letter">
+      My love, Uriela,
+
+      <br><br>Happy birthday, my beautiful girl. I hope today reminds you of how special you are and how much happiness you bring into my life.
+
+      <br><br>I cherish you more than words can properly explain. Thank you for the laughter, the little moments, the care, and the memories we keep creating. Having you in my life is something I never want to take for granted.
+
+      <br><br>As you begin another year, I wish you endless joy, good health, peace, wisdom, success, and beautiful reasons to smile. May the things your heart quietly wishes for find their way to you. Keep shining and never forget how loved and appreciated you are.
+
+      <br><br>I'll keep cheering you on, celebrating you, and choosing to make beautiful memories with you. Enjoy every second of your day, sweetheart. You deserve all the good things life has to offer.
+
+      <div class="sign">With all my love,<br>Clifford 💗</div>
+    </article>
+    <div class="ending">Happy Birthday, Uriela!<br>Your husband, Clifford 😘</div>
+    <div class="small sparkle">Forever a reason to celebrate ✨</div>
+  </section>
+</main>
+<script>
+  const welcome = document.getElementById('welcome');
+  const question = document.getElementById('question');
+  const message = document.getElementById('message');
+
+  function fanfare() {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const notes = [523.25, 659.25, 783.99, 1046.5, 783.99, 1046.5];
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.0001, ctx.currentTime + i * .19);
+        gain.gain.exponentialRampToValueAtTime(.075, ctx.currentTime + i * .19 + .035);
+        gain.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + i * .19 + .17);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * .19);
+        osc.stop(ctx.currentTime + i * .19 + .18);
+      });
+      setTimeout(() => ctx.close(), 1800);
+    } catch(e) {}
+  }
+
+  function flowers(count) {
+    const blooms = ['🌸','🌹','🌷','💐','🌺','💗','✨'];
+    for (let i=0; i<count; i++) {
+      const el = document.createElement('span');
+      el.className = 'flower';
+      el.textContent = blooms[Math.floor(Math.random()*blooms.length)];
+      el.style.left = Math.random()*100 + 'vw';
+      el.style.animationDuration = (3 + Math.random()*4) + 's';
+      el.style.animationDelay = (Math.random()*1.5) + 's';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 9000);
+    }
+  }
+
+  document.getElementById('openBtn').addEventListener('click', () => {
+    fanfare(); flowers(55);
+    welcome.classList.add('hidden');
+    question.classList.remove('hidden');
+  });
+  document.getElementById('yesBtn').addEventListener('click', () => {
+    flowers(75);
+    question.classList.add('hidden');
+    message.classList.remove('hidden');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+</script>
+</body>
+</html>
